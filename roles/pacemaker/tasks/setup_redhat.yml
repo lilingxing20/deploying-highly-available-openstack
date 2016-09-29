@@ -1,0 +1,10 @@
+---
+- name: install pacemaker
+  yum:
+    pkg: '{{ item }}'
+    state: '{{ pacemaker_package_state }}'
+  tags:
+    - pacemaker
+    - setup
+  with_items: '{{ pacemaker_packages }}'
+

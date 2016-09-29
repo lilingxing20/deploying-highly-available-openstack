@@ -1,0 +1,6 @@
+---
+- name: reload pacemaker
+  service:
+    name: '{{ pacemaker_service }}'
+    state: reloaded
+

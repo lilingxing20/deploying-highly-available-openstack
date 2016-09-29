@@ -1,0 +1,5 @@
+- name: deploying pacemaker
+  hosts: node1
+  user: root
+  roles:
+    - pacemaker
