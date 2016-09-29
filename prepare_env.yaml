@@ -3,8 +3,10 @@
   tasks:
     - name: config etc hosts
       template: src=templates/etc/hosts  dest=/etc/hosts
-    - selinux: policy=targeted state=permissive
-    - service: name=firewalld state=stopped enabled=no
+    - name: config selinux
+      selinux: policy=targeted state=permissive
+    - name: stop and disable firewalld
+      service: name=firewalld state=stopped enabled=no
     - name: install the  release openstack mitaka
       yum: name=http://nginx.org/packages/centos/6/noarch/RPMS/nginx-release-centos-6-0.el6.ngx.noarch.rpm state=present
 
