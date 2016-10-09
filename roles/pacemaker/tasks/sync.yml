@@ -1,0 +1,9 @@
+---
+# file: roles/pacemaker/tasks/sync.yml
+- name: Syncing corosync.conf on each cluster nodes
+  pcs_cluster:
+    command=sync
+  run_once: true
+  tags:
+    - pacemaker
+    - pacemaker-sync

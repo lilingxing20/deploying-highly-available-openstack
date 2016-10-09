@@ -1,0 +1,7 @@
+---
+# file: roles/pacemaker/tasks/config_nodes.yml
+#
+- name: Configure the host node /etc/hosts
+  template: src=templates/etc/hosts  dest=/etc/hosts
+- name: Configure selinux
+  selinux: policy=targeted state=permissive

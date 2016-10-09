@@ -1,4 +1,5 @@
 ---
+# file: roles/pacemaker/tasks/main.yml
 # tasks file for pacemaker
 
 - name: OS specific variables
@@ -9,6 +10,20 @@
     - service
     - config
 
+# Configure the host nodes
+- include: config_nodes.yml
+
+# Stop and Disable firewalld 
+- include: firewall_stop.yml
+
+# Stopping Pacemaker cluster
+- include: destroy.yml
+  when: pacemaker_destroy_cluster is defined and pacemaker_destroy_cluster == true
+
+# Config Pacemaker/pcsd firewalld rules
+- include: firewall.yml
+  when: pacemaker_firewalld is defined and pacemaker_firewalld == true
+
 # RedHat(setup) specific tasks
 - include: setup_redhat.yml
   when: "ansible_os_family == 'RedHat'"
@@ -16,6 +31,18 @@
 # Common service tasks
 - include: service.yml
 
+# Set hacluster user, haclient group
+- include: user.yml
+
+# Authenticating to pcsd daemon
+- include: auth.yml
+
 # Common configuration tasks
-- include: config.yml
+- include: config_cluster.yml
+
+# Starting Pacemaker/Corosync cluster everywhere
+- include: start.yml
+
+# Add resource vip_cluster
+- include: add_vip.yml
 

@@ -1,0 +1,10 @@
+---
+# file: roles/pacemaker/tasks/start.yml
+- name: Starting Pacemaker/Corosync cluster everywhere
+  pcs_cluster:
+    command=start
+#    all_nodes=yes
+#  run_once: true
+  tags:
+    - pacemaker
+    - pacemaker-start

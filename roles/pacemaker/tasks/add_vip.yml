@@ -1,0 +1,32 @@
+---
+# file: roles/pacemaker/tasks/auth.yml
+#
+- name: Add resource vip_cluster
+  pcs_resource:
+    command: create
+    resource_id: vip_cluster
+    res_class: ocf
+    res_provider: hearbeat
+    res_type: IPaddr2
+    attributes:
+      - options:
+          ip: "{{ vip }}"
+          cidr_netmask: "{{ vip_cidr }}"
+    operations:
+      - action: start
+        options:
+          interval: 0s
+          timeout: 20s
+      - action: stop
+        options:
+          interval: 0s
+          timeout: 20s
+      - action: monitor
+        options:
+          interval: 10s
+          timeout: 20s
+  run_once: true
+  tags:
+    - pacemaker
+    - pacemaker-resource-add
+

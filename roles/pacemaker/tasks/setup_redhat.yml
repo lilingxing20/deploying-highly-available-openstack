@@ -1,4 +1,6 @@
 ---
+# file: roles/pacemaker/tasks/setup_redhat.yml
+#
 - name: install pacemaker
   yum:
     pkg: '{{ item }}'
@@ -6,5 +8,5 @@
   tags:
     - pacemaker
     - setup
-  with_items: '{{ pacemaker_packages }}'
+  with_items: pacemaker_packages
 

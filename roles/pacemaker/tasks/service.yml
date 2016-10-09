@@ -1,10 +1,21 @@
 ---
-- name: Ensure service is started/stopped
+# file: roles/pacemaker/tasks/service.yml
+#
+#- name: Ensure pacemaker service is started/stopped
+#  service:
+#    name: '{{ pacemaker_service }}'
+#    state: '{{ pacemaker_service_state }}'
+#    enabled: '{{ pacemaker_service_enabled }}'
+#  tags:
+#    - pacemaker
+#    - service
+
+- name: Ensure pacemaker service is started/stopped
   service:
-    name: '{{ pacemaker_service }}'
-    state: '{{ pacemaker_service_state }}'
-    enabled: '{{ pacemaker_service_enabled }}'
+    name: '{{ pcsd_service }}'
+    state: '{{ pcsd_service_state }}'
+    enabled: '{{ pcsd_service_enabled }}'
   tags:
-    - pacemaker
+    - pcsd
     - service
 

@@ -5,8 +5,37 @@ pacemaker_package_state: present
 
 pacemaker_service: pacemaker
 
+pcsd_service_enabled: yes
+pcsd_service_state: started
+pcsd_service: pcsd
+
 pacemaker_properties:
   - name: stonith-enabled
     value: false
   - name: have-watchdog
     value: false
+
+pacemaker_hosts: 
+  - node-1
+  - node-2
+  - node-3
+  - node-4
+  - node-5
+
+pacemaker_firewalld: false
+pacemaker_destroy_cluster: false
+pacemaker_cluster_name: cloud_cluster
+pacemaker_user: hacluster
+pacemaker_group: haclient
+pacemaker_uid: 189
+pacemaker_gid: 189
+pacemaker_password: 123456
+pacemaker_password_sha512: $6$Anm8AwCp$lX6Kntq6joWFK4gGKMKZLv6GsZ76GOb0noWAQWpFTJJig4MumpACSuOT60UX8ulGnMXpmmeFKyPoxTmH.NXe21
+pacemaker_ports:
+  - 2224/tcp
+  - 3121/tcp
+  - 21064/tcp
+
+vip: 172.30.127.200
+vip_cidr: 24
+
