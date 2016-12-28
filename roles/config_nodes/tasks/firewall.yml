@@ -1,5 +1,5 @@
 ---
-# file: roles/pacemaker/tasks/firewall.yml
+# file: roles/pacemaker/config_nodes/firewall.yml
 - name: Pacemaker/pcsd firewalld rules
   firewalld:
     port={{ item }}
@@ -8,3 +8,6 @@
     immediate=true
   with_items:
     - "{{ pacemaker_ports }}"
+  tags:
+    - pacemaker
+    - pacemaker-firewall

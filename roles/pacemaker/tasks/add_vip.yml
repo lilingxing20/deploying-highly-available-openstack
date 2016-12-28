@@ -1,5 +1,5 @@
 ---
-# file: roles/pacemaker/tasks/auth.yml
+# file: roles/pacemaker/tasks/add_vip.yml
 #
 - name: Add resource vip_cluster
   pcs_resource:

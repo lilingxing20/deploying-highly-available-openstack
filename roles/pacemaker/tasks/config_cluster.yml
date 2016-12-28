@@ -22,5 +22,5 @@
   run_once: true
   tags:
     - pacemaker
-    - pacemaker-config
+    - pacemaker_config_cluster
 

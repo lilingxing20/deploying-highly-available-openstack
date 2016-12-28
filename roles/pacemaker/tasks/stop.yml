@@ -1,0 +1,8 @@
+---
+# file: roles/pacemaker/tasks/stop.yml
+
+- name: Stopping Pacemaker cluster
+  pcs_cluster:
+    command=stop
+  run_once: true
+

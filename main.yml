@@ -1,0 +1,7 @@
+- name: deploying pacemaker
+  hosts: cluster1
+  user: root
+  roles:
+    - config_nodes
+    - pacemaker
+

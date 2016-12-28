@@ -1,5 +1,6 @@
 ---
 # file: roles/pacemaker/tasks/user.yml
+
 - name: Creating haclient group
   group:
     name={{ pacemaker_group }}
@@ -21,3 +22,4 @@
   tags:
     - pacemaker
     - pacemaker-user
+

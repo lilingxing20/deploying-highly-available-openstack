@@ -1,0 +1,6 @@
+---
+# file: roles/pacemaker/config_nodes/selinux.yml
+#
+- name: Configure selinux
+  selinux: policy=targeted state=permissive
+

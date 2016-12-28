@@ -1,0 +1,5 @@
+---
+# file: roles/pacemaker/config_nodes/firewall_stop.yml
+- name: Stop and Disable firewalld
+  service: name=firewalld state=stoped enabled=no
+

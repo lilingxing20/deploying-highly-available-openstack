@@ -1,5 +1,6 @@
 ---
 # file: roles/pacemaker/tasks/sync.yml
+
 - name: Syncing corosync.conf on each cluster nodes
   pcs_cluster:
     command=sync

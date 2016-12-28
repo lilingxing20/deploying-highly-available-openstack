@@ -1,0 +1,9 @@
+---
+# file: roles/pacemaker/tasks/pcs_service.yml
+
+- name: Ensure pcsd service is started/stopped
+  service:
+    name: '{{ pcsd_service }}'
+    state: '{{ pcsd_service_state }}'
+    enabled: '{{ pcsd_service_enabled }}'
+

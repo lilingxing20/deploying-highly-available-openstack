@@ -1,0 +1,30 @@
+---
+# file: roles/pacemaker/tasks/main.yml
+# tasks file for pacemaker
+
+- name: OS specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - config_node
+    - config_selinux
+    - config_hosts
+    - config_filewall
+
+# Configure the  selinux
+- include: selinux.yml
+  tags:
+    - config_node
+    - config_selinux
+
+# Configure /etc/hosts
+- include: hosts.yml
+  tags:
+    - config_node
+    - config_hosts
+
+## Stop and Disable firewalld 
+#- include: firewall_stop.yml
+#  tags:
+#    - config_node
+#    - config_filewall
+#
