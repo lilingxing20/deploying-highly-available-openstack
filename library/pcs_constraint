@@ -38,7 +38,6 @@ def main():
     module = AnsibleModule(
         argument_spec  = dict(
             command    = dict(choices=['order', 'location', 'colocation', 'rule']),
-            name       = dict(required=True),
             options    = dict(required=False),
             force      = dict(default='no', required=False, choices=['yes', 'no']),
             operations = dict(required=False, type='list'),
@@ -65,16 +64,17 @@ def main():
     # Validate and process command specific params.
     if module.params['command'] == 'order' or module.params['command'] == 'location':
         if module.params['force'] == 'yes':
-            cmd = 'pcs constraint %(command)s %(name)s --force'
+            cmd = 'pcs constraint %(command)s --force'
         else:
-            cmd = 'pcs constraint %(command)s %(name)s'
+            cmd = 'pcs constraint %(command)s'
         # Process operations.
         if module.params.has_key('operations'):
             cmd += ' %(operations)s'
             operations = []
             for op in module.params['operations']:
                 op['options'] = ' '.join(['%s %s' % (key, value) for (key, value) in op['options'].items()])
-                if module.params.has_key('action'):
+                #if module.params.has_key('action'):
+                if op.has_key('action'):
                     operations.append('%(action)s %(options)s' % op)
                 else:
                     operations.append('%(options)s' % op)

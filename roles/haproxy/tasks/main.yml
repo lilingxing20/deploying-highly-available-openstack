@@ -1,0 +1,52 @@
+---
+# file: roles/haproxy/tasks/main.yml
+# tasks file for haproxy
+
+- name: OS specific variables
+  include_vars: "{{ ansible_os_family }}.yml"
+  tags:
+    - haproxy
+    - haproxy-setup
+    - haproxy_config
+    - haproxy-destroy
+    - filewall
+
+# Stopping haproxy from cluster
+- include: destroy.yml
+  when: haproxy_destroy is defined and haproxy_destroy == true
+  tags:
+    - haproxy
+    - haproxy-destroy
+
+# Config haproxy firewalld rules
+- include: firewall.yml
+  when: haproxy_firewalld is defined and haproxy_firewalld == true
+  tags:
+    - firewall
+
+# RedHat(setup) specific tasks
+- include: setup_redhat.yml
+  when: "ansible_os_family == 'RedHat'"
+  tags:
+    - haproxy
+    - haproxy-setup
+
+# Common configuration haproxy tasks
+- include: config_haproxy.yml
+  tags:
+    - haproxy
+    - haproxy_config
+
+# Add controller-vip resource to pacemaker cluster
+- include: add_controller_vip.yml
+  tags:
+    - haproxy
+    - add-controller-vip
+    - pacemaker-resource-vip
+
+# Add haproxy resource to pacemaker cluster
+- include: add_haproxy_resource.yml
+  tags:
+    - haproxy
+    - pacemaker-resource-haproxy
+

@@ -1,0 +1,46 @@
+---
+# file: roles/pacemaker/tasks/add_haproxy_resource.yml
+#
+- name: Add resource haproxy
+  pcs_resource:
+    command: create
+    resource_id: haproxy
+    res_class: systemd
+    res_type: haproxy
+    operations:
+      - action: start
+        options:
+          interval: 0s
+          timeout: 200s
+      - action: stop
+        options:
+          interval: 0s
+          timeout: 200s
+      - action: monitor
+        options:
+          interval: 60s
+    clone: true
+  run_once: true
+  tags:
+    - pacemaker
+    - pacemaker-resource-haproxy
+    - pacemaker-resource-haproxy-add
+
+- name: Configure resource haproxy constraint
+  pcs_constraint:
+    command: order
+    operations:
+      - options:
+          start: controller-vip
+      - action: then
+        options:
+          start: haproxy-clone
+      - action: option
+        options:
+          kind: Optional
+  run_once: true
+  tags:
+    - pacemaker
+    - pacemaker-resource-haproxy
+    - pacemaker-resource-haproxy-constraint
+

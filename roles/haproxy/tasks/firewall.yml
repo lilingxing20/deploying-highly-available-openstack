@@ -1,0 +1,10 @@
+---
+# file: roles/haproxy/tasks/firewall.yml
+- name: Haproxy firewalld rules
+  firewalld:
+    port={{ item }}
+    permanent=true
+    state=enabled
+    immediate=true
+  with_items:
+    - "{{ haproxy_ports }}"

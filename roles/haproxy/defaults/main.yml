@@ -1,0 +1,13 @@
+---
+haproxy_service_enabled: no
+haproxy_service_state: stop
+haproxy_package_state: present
+
+haproxy_destroy: false
+
+haproxy_ports:
+  - 80/http
+
+controller_vip: 172.30.121.198
+controller_vip_cidr: 24
+

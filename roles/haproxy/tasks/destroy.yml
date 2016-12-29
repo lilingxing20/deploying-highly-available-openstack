@@ -1,0 +1,4 @@
+---
+# file: roles/haproxy/tasks/destroy.yml
+#- include: stop.yml
+

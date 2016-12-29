@@ -1,0 +1,12 @@
+---
+# file: roles/config_nodes/tasks/sysctl.yml
+#
+- name : Sysctl config
+  sysctl: 
+    name: '{{ item.name | lower }}'
+    value: '{{ item.value | lower }}'
+    sysctl_file: '{{ item.sysctl_file | lower }}'
+    sysctl_set: '{{ item.sysctl_set | lower }}'
+  with_items:
+    - "{{ sysctl_config_items }}"
+

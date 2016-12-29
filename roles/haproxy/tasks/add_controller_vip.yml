@@ -1,17 +1,17 @@
 ---
-# file: roles/pacemaker/tasks/add_vip.yml
+# file: roles/pacemaker/tasks/controller_vip.yml
 #
-- name: Add resource vip_cluster
+- name: Add resource controller-vip
   pcs_resource:
     command: create
-    resource_id: vip_cluster
+    resource_id: controller-vip
     res_class: ocf
     res_provider: hearbeat
     res_type: IPaddr2
     attributes:
       - options:
-          ip: "{{ vip }}"
-          cidr_netmask: "{{ vip_cidr }}"
+          ip: "{{ controller_vip }}"
+          cidr_netmask: "{{ controller_vip_cidr }}"
     operations:
       - action: start
         options:
@@ -28,5 +28,5 @@
   run_once: true
   tags:
     - pacemaker
-    - pacemaker-resource-add
+    - pacemaker-controller-vip
 

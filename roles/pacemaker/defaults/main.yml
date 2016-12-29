@@ -34,6 +34,3 @@ pacemaker_ports:
   - 3121/tcp
   - 21064/tcp
 
-vip: 172.30.121.199
-vip_cidr: 24
-

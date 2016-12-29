@@ -1,1 +1,9 @@
 ---
+
+# Allow the binding of non-local IP
+sysctl_config_items:
+  - name: 'net.ipv4.ip_nonlocal_bind'
+    value: 1
+    sysctl_file: '/etc/sysctl.d/haproxy.conf'
+    sysctl_set: yes
+

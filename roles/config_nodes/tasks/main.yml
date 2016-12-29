@@ -1,6 +1,6 @@
 ---
-# file: roles/pacemaker/tasks/main.yml
-# tasks file for pacemaker
+# file: roles/config_nodes/tasks/main.yml
+# tasks file for configure nodes
 
 - name: OS specific variables
   include_vars: "{{ ansible_os_family }}.yml"
@@ -8,6 +8,7 @@
     - config_node
     - config_selinux
     - config_hosts
+    - config_sysctl
     - config_filewall
 
 # Configure the  selinux
@@ -21,6 +22,12 @@
   tags:
     - config_node
     - config_hosts
+
+# Allow the binding of non-local IP
+- include: sysctl.yml
+  tags:
+    - config_node
+    - config_sysctl
 
 ## Stop and Disable firewalld 
 #- include: firewall_stop.yml

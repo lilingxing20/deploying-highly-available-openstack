@@ -60,10 +60,3 @@
     - pacemaker
     - pacemaker-start
 
-# Add resource vip_cluster
-- include: add_vip.yml
-  tags:
-    - pacemaker
-    - pacemaker-resource-add
-
-
