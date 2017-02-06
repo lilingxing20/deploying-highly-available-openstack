@@ -7,7 +7,7 @@
   tags:
     - haproxy
     - haproxy-setup
-    - haproxy_config
+    - haproxy-config
     - haproxy-destroy
     - filewall
 
@@ -35,7 +35,7 @@
 - include: config_haproxy.yml
   tags:
     - haproxy
-    - haproxy_config
+    - haproxy-config
 
 # Add controller-vip resource to pacemaker cluster
 - include: add_controller_vip.yml

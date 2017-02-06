@@ -1,4 +1,4 @@
-- name: deploying pacemaker
+- name: deploying highly available openstack
   hosts: cluster1
   user: root
   roles:

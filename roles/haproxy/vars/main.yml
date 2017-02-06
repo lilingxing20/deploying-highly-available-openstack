@@ -1,0 +1,25 @@
+---
+
+listen_cinder: True
+listen_glance_api: True
+listen_glance_registry: True
+listen_haproxy_stats: True
+listen_keystone_admin: True
+listen_keystone_pulic: True
+listen_mysql: True
+listen_neutron: True
+listen_nova_metadata: True
+listen_nova_novncproxy: True
+listen_nova_osapi: True
+
+controller_vip: 172.30.121.198
+controller_vip_cidr: 24
+
+cluster_servers:
+  - servername: server1
+    ip_net: 172.30.121.171
+  - servername: server2
+    ip_net: 172.30.121.172
+  - servername: server3
+    ip_net: 172.30.121.173
+
