@@ -5,5 +5,6 @@
   yum:
     pkg: '{{ item }}'
     state: '{{ pacemaker_package_state }}'
-  with_items: pacemaker_packages
-
+  with_items: '{{ pacemaker_packages }}'
+  tags:
+    - pacemaker-install

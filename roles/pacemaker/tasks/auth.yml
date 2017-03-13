@@ -8,8 +8,7 @@
   delay: 3
   run_once: true
   tags:
-    - pacemaker
-    - pacemaker-auth
+    - pacemaker-status
 
 - name: Authenticating to pcsd daemon
   pcs_cluster:
@@ -20,5 +19,4 @@
     force=yes
   run_once: true
   tags:
-    - pacemaker
     - pacemaker-auth

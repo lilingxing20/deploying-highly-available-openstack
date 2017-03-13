@@ -1,26 +1,24 @@
 ---
 # file: roles/pacemaker/tasks/config_cluster.yml
 #
-#- name: Enabling/Disabling Pacemaker properties
-#  pcs_property:
-#    name: '{{ item.name | lower }}'
-#    value: '{{ item.value | lower }}'
-#    with_items:
-#      - "{{ pacemaker_properties }}"
-#    run_once: true
-#    tags:
-#      - pacemaker
-#      - pacemaker-properties
+- name: Enabling/Disabling Pacemaker properties
+  pcs_property:
+    name: '{{ item.name | lower }}'
+    value: '{{ item.value | lower }}'
+  with_items:
+    - "{{ pacemaker_properties }}"
+  run_once: true
+  tags:
+    - pacemaker-properties
 
 
 - name: Config cluster, create corosync.conf and sync to other nodes
   pcs_cluster:
-    command=setup
-    hosts="{{ pacemaker_hosts | join(' ') }}"
-    cluster_name={{ pacemaker_cluster_name }}
-    force=yes
+    command: setup
+    hosts: "{{ pacemaker_hosts | join(' ') }}"
+    cluster_name: "{{ pacemaker_cluster_name }}"
+    force: yes
   run_once: true
   tags:
-    - pacemaker
     - pacemaker_config_cluster
 

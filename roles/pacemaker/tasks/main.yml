@@ -5,17 +5,13 @@
 - name: OS specific variables
   include_vars: "{{ ansible_os_family }}.yml"
   tags:
-    - pacemaker
-    - pacemaker-setup
-    - pacemaker-destroy
-    - firewall
+    - pacemaker-install
 
 # Stopping Pacemaker cluster
 - include: destroy.yml
   when: pacemaker_destroy_cluster is defined and pacemaker_destroy_cluster == true
   tags:
     - pacemaker
-    - pacemaker-destroy
 
 # Config Pacemaker/pcsd firewalld rules
 - include: firewall.yml
@@ -28,7 +24,6 @@
   when: "ansible_os_family == 'RedHat'"
   tags:
     - pacemaker
-    - pacemaker-setup
 
 # Common pcsd service tasks
 - include: pcsd_service.yml
@@ -39,24 +34,19 @@
 - include: user.yml
   tags:
     - pacemaker
-    - pacemaker-user
-    - pacemaker-group
 
 # Authenticating to pcsd daemon
 - include: auth.yml
   tags:
     - pacemaker
-    - pacemaker-auth
 
 # Common configuration tasks
 - include: config_cluster.yml
   tags:
     - pacemaker
-    - pacemaker_config_cluster
 
 # Starting Pacemaker/Corosync cluster everywhere
 - include: start.yml
   tags:
     - pacemaker
-    - pacemaker-start
 

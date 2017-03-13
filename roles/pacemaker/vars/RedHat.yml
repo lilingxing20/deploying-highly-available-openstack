@@ -1,7 +1,7 @@
 ---
 pacemaker_packages:
+  - pcs
   - pacemaker
   - resource-agents
-  - pcs
+  - fence-agents-all
 
-pacemaker_service: pacemaker

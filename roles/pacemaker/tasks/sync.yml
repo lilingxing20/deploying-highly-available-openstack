@@ -6,5 +6,4 @@
     command=sync
   run_once: true
   tags:
-    - pacemaker
     - pacemaker-sync

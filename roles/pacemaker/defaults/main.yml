@@ -16,9 +16,9 @@ pacemaker_properties:
     value: false
 
 pacemaker_hosts: 
-  - node-1
-  - node-2
-  - node-3
+  - ha1
+  - ha2
+  - ha3
 
 pacemaker_firewalld: false
 pacemaker_destroy_cluster: false

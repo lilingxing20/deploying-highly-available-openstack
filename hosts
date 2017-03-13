@@ -1,0 +1,5 @@
+[cluster1]
+ha1 ansible_ssh_host=10.200.0.11 ansible_ssh_pass=teamsun
+ha2 ansible_ssh_host=10.200.0.12 ansible_ssh_pass=teamsun
+ha3 ansible_ssh_host=10.200.0.13 ansible_ssh_pass=teamsun
+
